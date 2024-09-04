@@ -14,7 +14,7 @@ import { Loader2 } from "lucide-react";
 
 const Signup = () => {
   const [input, setInput] = useState({
-    fullname: "",
+    name: "",
     email: "",
     phoneNumber: "",
     password: "",
@@ -34,7 +34,7 @@ const Signup = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData(); //formdata object
-    formData.append("fullname", input.fullname);
+    formData.append("name", input.name);
     formData.append("email", input.email);
     formData.append("phoneNumber", input.phoneNumber);
     formData.append("password", input.password);

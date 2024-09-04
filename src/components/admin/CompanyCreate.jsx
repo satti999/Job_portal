@@ -27,10 +27,10 @@ const CompanyCreate = () => {
         }
       );
 
-      console.log(res.data, "Create company response");
+      // console.log(res.data, "Create company response");
       if (res?.data?.success) {
         dispatch(setSingleCompany(res.data.company));
-        console.log(res.data, "Create company response");
+        // console.log(res.data, "Create company response");
         toast.success(res.data.message);
         const companyId = res?.data?.company?.companyId;
         navigate(`/admin/companies/${companyId}`);
