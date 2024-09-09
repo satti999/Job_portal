@@ -19,7 +19,7 @@ const CompanySetup = () => {
     description: "",
     website: "",
     location: "",
-    logo: "",
+    file: "",
   });
   const { singleCompany } = useSelector((store) => store.company);
   console.log("single company", singleCompany);
@@ -31,8 +31,7 @@ const CompanySetup = () => {
   };
 
   const changeFileHandler = (e) => {
-    const logo = e.target.files?.[0];
-    setInput({ ...input, logo });
+    setInput({ ...input, file: e.target.files?.[0] });
   };
 
   const submitHandler = async (e) => {
@@ -43,7 +42,7 @@ const CompanySetup = () => {
     formData.append("website", input.website);
     formData.append("location", input.location);
     if (input.file) {
-      formData.append("image", input.logo);
+      formData.append("image", input.file);
     }
     try {
       setLoading(true);
@@ -139,7 +138,6 @@ const CompanySetup = () => {
               <Input
                 type="file"
                 accept="image/*"
-                value={input.logo}
                 onChange={changeFileHandler}
               />
             </div>

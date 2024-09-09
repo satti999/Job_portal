@@ -14,7 +14,7 @@ const useGetJobById = (jobId) => {
           withCredentials: true,
         });
         if (res.data.success) {
-          console.log(res.data.job, "single job response");
+          console.log(res.data, "single job response........................");
           dispatch(setSingleJob(res.data.job));
         }
       } catch (error) {
@@ -22,7 +22,7 @@ const useGetJobById = (jobId) => {
       }
     };
     fetchSingleJob();
-  }, [jobId, dispatch]);
+  }, [jobId]);
 };
 
 export default useGetJobById;

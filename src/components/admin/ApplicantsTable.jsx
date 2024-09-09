@@ -25,8 +25,8 @@ const ApplicantsTable = () => {
     console.log("called");
     try {
       axios.defaults.withCredentials = true;
-      const res = await axios.post(
-        `${APPLICATION_API_END_POINT}/status/${id}/update`,
+      const res = await axios.put(
+        `${APPLICATION_API_END_POINT}/update/${id}/`,
         { status }
       );
       console.log(res);
@@ -54,7 +54,7 @@ const ApplicantsTable = () => {
         </TableHeader>
         <TableBody>
           {applicants &&
-            applicants?.map((item,index) => (
+            applicants?.map((item, index) => (
               <tr key={index}>
                 <TableCell>{item?.applicant?.name}</TableCell>
                 <TableCell>{item?.applicant?.email}</TableCell>
@@ -83,7 +83,9 @@ const ApplicantsTable = () => {
                       {shortlistingStatus.map((status, index) => {
                         return (
                           <div
-                            onClick={() => statusHandler(status, item?._id)}
+                            onClick={() =>
+                              statusHandler(status, item?.applicationId)
+                            }
                             key={index}
                             className="flex w-fit items-center my-2 cursor-pointer"
                           >

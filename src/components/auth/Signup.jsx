@@ -81,8 +81,8 @@ const Signup = () => {
             <Label>Full Name</Label>
             <Input
               type="text"
-              value={input.fullname}
-              name="fullname"
+              value={input.name}
+              name="name"
               onChange={changeEventHandler}
               placeholder="patel"
             />
@@ -145,8 +145,10 @@ const Signup = () => {
             <div className="flex items-center gap-2">
               <Label>Profile</Label>
               <Input
+                name="file"
                 accept="image/*"
                 type="file"
+                value={input.file}
                 onChange={changeFileHandler}
                 className="cursor-pointer"
               />

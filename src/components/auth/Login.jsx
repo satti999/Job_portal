@@ -38,7 +38,7 @@ const Login = () => {
       });
       if (res.status) {
         console.log("response", res);
-        dispatch(setUser(res.data));
+        dispatch(setUser(res.data.user));
         navigate("/");
         toast.success(res.data.message);
       }

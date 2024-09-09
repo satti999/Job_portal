@@ -12,6 +12,7 @@ const JobDescription = () => {
   const { singleJob } = useSelector((store) => store.job);
   const { user } = useSelector((store) => store.auth);
   console.log("user in description", user);
+  console.log("single job in job description", singleJob);
   const isIntiallyApplied =
     singleJob?.applications?.some(
       (application) => application.applicant === user?.userId
@@ -28,7 +29,7 @@ const JobDescription = () => {
         `${APPLICATION_API_END_POINT}/create/${jobId}`,
         { withCredentials: true }
       );
-
+      console.log("single job in job description", singleJob);
       if (res.data.success) {
         setIsApplied(true); // Update the local state
         const updatedSingleJob = {
@@ -39,6 +40,7 @@ const JobDescription = () => {
           ],
         };
         dispatch(setSingleJob(updatedSingleJob)); // helps us to real time UI update
+        console.log("siggle job state update", updatedSingleJob);
         toast.success(res.data.message);
       }
     } catch (error) {
@@ -53,9 +55,10 @@ const JobDescription = () => {
         const res = await axios.get(`${JOB_API_END_POINT}/get/${jobId}`, {
           withCredentials: true,
         });
+        console.log("applications  .....applied", res.data.job);
         if (res.data.success) {
           dispatch(setSingleJob(res.data.job));
-          console.log("applications  .....applied", res.data.job.application);
+          console.log("applications  .....applied", res.data.job);
           setIsApplied(
             res.data.job.applications.some(
               (application) => application.applicantId === user?.userId
@@ -141,7 +144,9 @@ const JobDescription = () => {
         <h1 className="font-bold my-1">
           Posted Date:{" "}
           <span className="pl-4 font-normal text-gray-800">
-            {singleJob?.createdAt.split("T")[0]}
+            {singleJob?.createdAt
+              ? singleJob.createdAt.split("T")[0]
+              : "Date not available"}
           </span>
         </h1>
       </div>
